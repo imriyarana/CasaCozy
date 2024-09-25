@@ -5,19 +5,21 @@ const Review = require("./review.js");
 const listingSchema = new Schema ({
     title : String,
     description : String,
-    image : {
-        type: String,
-        default : "https://www.istockphoto.com/photo/kyoto-japan-in-spring-gm902966276-249052241?utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fkyoto&utm_medium=affiliate&utm_source=unsplash&utm_term=kyoto%3A%3A%3A",
-        set : (v)=>
-            v===""?"https://www.istockphoto.com/photo/kyoto-japan-in-spring-gm902966276-249052241?utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fkyoto&utm_medium=affiliate&utm_source=unsplash&utm_term=kyoto%3A%3A%3A":v
+    image :{
+        url : String,
+        filename : String
     },
     price : Number,
     location : String,
     country : String,
     reviews:[{
         type: Schema.Types.ObjectId,
-        ref:"Review"
-    }]
+        ref:"Review",
+    }],
+    owner:{
+        type:Schema.Types.ObjectId,
+        ref:"User",
+    },
 });
 
 listingSchema.post("findOneAndDelete",async(listing)=>{

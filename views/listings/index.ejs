@@ -1,7 +1,6 @@
 <% layout("/layouts/boilerplate") %>
-
     <body>
-        <h2>All Listings</h2>
+        <h2>Cozy Spaces</h2>
         <!-- <form method="Get" action="/listings/new">
         <button>Create New Listing</button>
     </form> -->
@@ -9,7 +8,7 @@
             <% for (let listing of allListings){%>
                 <a href="/listings/<%= listing._id %>" class="listing-link">
                     <div class="card col listing-card">
-                        <img src="<%= listing.image %>" class="card-img-top" alt="listing" style="height: 20rem;">
+                        <img src="<%= listing.image.url %>" class="card-img-top" alt="listing" style="height: 20rem;">
                         <div class="card-img-overlay"></div>
                         <div class="card-body">
                             <p class="card-text"> <b>

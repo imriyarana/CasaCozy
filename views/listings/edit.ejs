@@ -2,7 +2,10 @@
 <div class="row mt-3">
     <div class="col-8 offset-2">
     <h3>Edit Your Listing</h3>
-    <form method="POST" action="/listings/<%= listing.id %>?_method=PUT" class="needs-validation" novalidate>
+    <form method="POST" action="/listings/<%= listing.id %>?_method=PUT" 
+        class="needs-validation"
+         novalidate
+         enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input name="Listing[title]" value="<%= listing.title %>" type="text" class="form-control" required >
@@ -12,17 +15,22 @@
          <div class="mb-3">
             <label for="description" class="form-label">Description</label>
              <textarea name ="Listing[description]" class="form-control" required ><%=listing.description%></textarea>
-             <div class="invalid-feedback">please write a description
-             </div>
+             <div class="invalid-feedback">please write a description </div>
             </div>
 
          <div class="mb-3">
-            <label for="image" class="form-label">Image Url</label>
-            <input name="Listing[image]" value="<%= listing.image %>" class="form-control"></div>
+            Previous Image <br>
+            <img src="<%= originalImage %>">
+        </div> 
+        <div class="mb-3"> 
+            <label for="image" class="form-label">Upload new image</label>
+            <input name="Listing[image]" type="file" class="form-control" />
+        </div>
             <div class="row">
                 <div class="mb-3 col-md-4">
                     <label for="price" class="form-label">Price</label>
-                    <input name="Listing[price]" value="<%= listing.price %>" type="number" class="form-control" required><div class="invalid-feedback">please enter correct price</div>
+                    <input name="Listing[price]" value="<%= listing.price %>" type="number" class="form-control" required>
+                    <div class="invalid-feedback">please enter correct price</div>
                 </div>
 
                  <div class="mb-3 col-md-8">
