@@ -1,4 +1,7 @@
 const Listing = require("../models/listing");
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapToken = process.env.MAP_TOKEN;
+const GeocodingClient= mbxGeocoding({acessToken: mapToken});
 
 module.exports.index =  async (req, res) => {
     const allListings = await Listing.find({});
@@ -21,7 +24,7 @@ module.exports.show = async (req, res) => {
     res.render("listings/show.ejs", { listing });
 };
 
-module.exports.post=(async (req, res) => {
+module.exports.create = (async (req, res) => {
     let url = req.file.path;
     let filename = req.file.finename;
    
@@ -41,7 +44,6 @@ module.exports.edit= async (req, res) => {
         res.redirect("/listings");
     }
     let originalImage = listing.image.url;
-   originalImage = originalImage.replace("/upload","/upload/w_250");
     res.render("listings/edit.ejs", { listing, originalImage});
 };
 
