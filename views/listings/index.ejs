@@ -1,9 +1,69 @@
 <% layout("/layouts/boilerplate") %>
-    <body>
+<style>
+    #filters{
+      display: flex;
+      flex-wrap: wrap;
+    }
+   .filter{
+    text-align:center;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+   }
+   .filter:hover{
+    opacity:1;
+    cursor: pointer;
+   }
+</style>
+        <body>
         <h2>Cozy Spaces</h2>
-        <!-- <form method="Get" action="/listings/new">
-        <button>Create New Listing</button>
-    </form> -->
+    <div id="filters">
+        <div class="filter">
+            <div><i class="fa-solid fa-fire"></i>
+                <p>Trending</p>
+            </div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-bed"></i>
+                <p>Rooms</p>
+            </div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i>
+                <p>Skyline</p>
+            </div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i>
+                <p>Skyline</p>
+            </div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i>
+                <p>Skyline</p>
+            </div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i>
+                <p>Skyline</p>
+            </div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i>
+                <p>Skyline</p>
+            </div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i>
+                <p>Skyline</p>
+            </div>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i>
+                <p>Skyline</p>
+            </div>
+        </div>
+    </div>
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
             <% for (let listing of allListings){%>
                 <a href="/listings/<%= listing._id %>" class="listing-link">

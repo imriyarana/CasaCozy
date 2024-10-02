@@ -449,10 +449,6 @@ const sampleListings = [
       location: "Costa Rica",
       country: "Costa Rica",
       reviews:[],
-      geometry:{
-        type:"Point",
-        coordinates: [-71.5724, 43.1939],
-      }
     },
   ];
   
