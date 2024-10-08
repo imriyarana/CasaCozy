@@ -6,7 +6,7 @@ const Review = require("./models/review");
 module.exports.isLoggedIn = (req,res,next)=>{
     if(!req.isAuthenticated()){
         req.session.redirectUrl = req.orignalUrl;
-        req.flash("error", "You must be logged in to create listings");
+        req.flash("error", "Please log in to add a new stay!");
         res.redirect("/login");
     };
     next()
@@ -23,7 +23,7 @@ module.exports.isOwner = async (req,res,next)=>{
     let {id} = req.params
     let listing = await Listing.findById(id);
     if(!listing.owner.equals(res.locals.currUser._id)){
-        req.flash("error", "you don't have permission to edit");
+        req.flash("error", "You're not allowed to make edits to this stay :^)");
       return res.redirect(`/listings/${id}`)
     }
     next();
@@ -53,7 +53,7 @@ module.exports.isAuthor = async (req,res,next)=>{
     let {id,reviewId} = req.params
     let review = await Review.findById(reviewId);
     if(!review.author.equals(res.locals.currUser._id)){
-        req.flash("error", "you don't have permission to delete");
+        req.flash("error", "Permission denied. You cannot remove this stay.");
       return res.redirect(`/listings/${id}`)
     }
     next();

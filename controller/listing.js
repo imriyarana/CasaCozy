@@ -15,7 +15,7 @@ module.exports.show = async (req, res) => {
     .populate({path:"reviews", populate:{path:"author"},})
     .populate("owner");
     if(!listing){
-        req.flash("err", "Listing you requested for does not exist!");
+        req.flash("err", "Your requested stay does not exist!");
       res.redirect("/listings");
     }
     res.render("listings/show.ejs", { listing });
@@ -25,14 +25,13 @@ module.exports.create = (async (req, res) => {
     let url = req.file.path;
     let filename = req.file.filename;
     const listing=req.body.Listing;
-    //  console.log(listing);
     const newListing = new Listing(listing);
     newListing.owner = req.user._id;
     newListing.image = {url,filename};
 
     
     await newListing.save()
-    req.flash("success", "New listing created!");
+    req.flash("success", "Your new addition is ready and cozy!");
     res.redirect("/listings");
 });
 
@@ -40,7 +39,7 @@ module.exports.edit= async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
     if(!listing){
-        req.flash("err", "Listing you requested for does not exist!");
+        req.flash("err", "Your requested stay does not exist!");
         res.redirect("/listings");
     }
     let originalImage = listing.image.url;
@@ -57,7 +56,7 @@ module.exports.edit= async (req, res) => {
     listing.image = {url,filename};
     await listing.save();
    }
-    req.flash("success", "listing updated!");
+    req.flash("success", "Your update is complete and cozy!!");
     res.redirect(`/listings/${id}`);
 };
 
